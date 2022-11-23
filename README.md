@@ -8,7 +8,7 @@
 ## Enunciado del ejercicio (primera parte)📝:
 Todo el mundo sabe cómo se juega al ahorcado, pero aún así vamos a especificar lo que debemos hacer en el ejercicio. Os contamos lo que haremos en la primera parte del módulo. Cuando lleguemos a la lección del Router os contaremos la segunda parte.
 
-![image](https://user-images.githubusercontent.com/113302094/203523474-a7f0c7dd-bec9-4f22-95de-4c1df23a9956.png)
+![spaces_7DgUPj6SkDP1btgphZh9_uploads_git-blob-6a7e5f667d19b9da46874c229a3c1e5d9294d482_react_ejercicio_ahorcado_enunciado-01](https://user-images.githubusercontent.com/113302094/203525700-ea0c0a1d-9ce5-411a-98ee-a2d7ce2b274d.gif)
 
 1. Al arrancar la página, el juego debe obtener una palabra aleatoria de una API. Esta palabra es la que la jugadora debe adivinar.
     - Una vez la API nos devuelve la palabra aleatoria debemos pintar en el apartado Solución varios guiones bajos para indicar a la jugadora la longitud de la palabra
