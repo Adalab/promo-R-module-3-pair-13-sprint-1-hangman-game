@@ -2,15 +2,31 @@ import "../styles/App.scss";
 import { useState } from "react";
 
 function App() {
-  const [numberOfErrors, setNumberOfErrors] = useState(0); 
+  const [numberOfErrors, setNumberOfErrors] = useState(0); //estado del contador
+  const [lastLetter, setLastLetter] = useState(''); //estado del input
   
+  //función para incrementar el contador
   const handleButton = (ev) => {
     ev.preventDefault();
     const increment = numberOfErrors +1;
     setNumberOfErrors(increment); 
-    //lo que queremos es que cuando se clicke, numberOfErrors, añada un número más. Para ello tenemos que pasarle este numberOfErrors como parámetro a su función  setNumberOfErrors.
     console.log(numberOfErrors);
   };
+
+  //función para obtener lo que escribe la usuaria en el input
+  const handleInput = (ev) => {
+    const lettersAllowed = /[A-Za-z]/; //expresión regular
+    if (lettersAllowed.test(ev.target.value) === true){
+      setLastLetter(ev.target.value); 
+    }; //hacemos una condicional: le decimos que si el valor que introduce la usuaria es igual a los caracteres permitidos, entonces me guarde la letra, sino no.
+  };
+
+  //función para que no se recarge la página al dar al enter.
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
+
+
 
   return (
     <div className="page">
@@ -28,7 +44,7 @@ function App() {
             <h2 className="title">Letras falladas:</h2>
             <ul className="letters"></ul>
           </div>
-          <form className="form">
+          <form className="form" onSubmit={handleSubmit}>
             <label className="title" htmlFor="last-letter">
               Escribe una letra:
             </label>
@@ -40,6 +56,8 @@ function App() {
               type="text"
               name="last-letter"
               id="last-letter"
+              value={lastLetter}
+              onChange={handleInput}
             />
           </form>
         </section>
