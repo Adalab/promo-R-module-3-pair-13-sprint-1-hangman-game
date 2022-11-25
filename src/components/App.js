@@ -32,12 +32,28 @@ function App() {
   //funcion para pintar
   const renderSolutionLetters = () => {
     const wordLetters = word.split("");
-    // setWord([...wordLetters]);
-    return wordLetters.map((word, index) => {
-      return <li className="letter" key={index}> {word}</li>;
+   
+    return wordLetters.map((letter, index) => {
+
+      const correctLetter = userLetters.includes(letter.toLocaleLowerCase()); //función para obtener el valor de lo que pinta la usuaria en comparación a lo que tiene la letra de la API. 
+
+      return <li className="letter" key={index}>{ correctLetter ? letter : ''}</li>; //condicional para que se pinte la letras: si es igual a la letra que contiene la palabra se pinta, sino se deja vacio. 
     });
   };
 
+  const renderErrorLetters = () => {
+    const incorrectLetter = userLetters.filter(
+    (letter) =>
+      word.toLocaleLowerCase().includes(letter.toLocaleLowerCase()) === false
+  );
+   
+    return incorrectLetter.map((letter, index) => {
+
+      return <li className="letter" key={index}>{letter}</li>; //condicional para que se pinte la letras: si es igual a la letra que contiene la palabra se pinta, sino se deja vacio. 
+    });
+  };
+
+ 
   return (
     <div className="page">
       <header>
@@ -52,7 +68,7 @@ function App() {
           </div>
           <div className="error">
             <h2 className="title">Letras falladas:</h2>
-            <ul className="letters"></ul>
+            <ul className="letters">{renderErrorLetters()}</ul>
           </div>
           <form className="form" onSubmit={handleSubmit}>
             <label className="title" htmlFor="last-letter">
