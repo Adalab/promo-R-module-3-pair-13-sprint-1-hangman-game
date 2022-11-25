@@ -8,12 +8,12 @@ function App() {
   const [word, setWord] = useState("katakroker"); //almacenar la palabra de la API
   const [userLetters, setUsesLeters] = useState([]); //array para almacenar las letras que introduce la jugadora.
 
-  //función para incrementar el contador
-  const handleButton = (ev) => {
-    ev.preventDefault();
-    const increment = numberOfErrors + 1;
-    setNumberOfErrors(increment);
-  };
+  // //función para incrementar el contador
+  // const handleButton = (ev) => {
+  //   ev.preventDefault();
+  //   const increment = numberOfErrors + 1;
+  //   setNumberOfErrors(increment);
+  // };
 
   //función para obtener lo que escribe la usuaria en el input
   const handleInput = (ev) => {
@@ -41,6 +41,13 @@ function App() {
     });
   };
 
+  const getNumberOfErrors = () => {
+    const errorLetters = userLetters.filter(
+      (letter) => word.includes(letter) === false
+    );
+    return errorLetters.length;
+  };
+
   const renderErrorLetters = () => {
     const incorrectLetter = userLetters.filter(
     (letter) =>
@@ -59,7 +66,7 @@ function App() {
       <header>
         <h1 className="header__title">Juego del ahorcado</h1>
       </header>
-      <button onClick={handleButton}> Incrementar </button>
+      <button> Incrementar </button>
       <main className="main">
         <section>
           <div className="solution">
@@ -87,7 +94,7 @@ function App() {
             />
           </form>
         </section>
-        <section className={`dummy error-${numberOfErrors}`}>
+        <section className={`dummy error-${getNumberOfErrors}`}>
           <span className="error-13 eye"></span>
           <span className="error-12 eye"></span>
           <span className="error-11 line"></span>
