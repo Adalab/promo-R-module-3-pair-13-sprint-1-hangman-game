@@ -17,10 +17,12 @@ function App() {
 
   //función para obtener lo que escribe la usuaria en el input
   const handleInput = (ev) => {
-    const lettersAllowed = /[A-Za-z]/; //expresión regular
+    let lettersAllowed =  /^[a-zA-ZñÑá-úÁ-Ú´]$/; //expresión regular
     if (lettersAllowed.test(ev.target.value) === true) {
       setLastLetter(ev.target.value);
+      setUsesLeters([...userLetters,ev.target.value]);
     } //hacemos una condicional: le decimos que si el valor que introduce la usuaria es igual a los caracteres permitidos, entonces me guarde la letra, sino no.
+    
   };
 
   //función para que no se recarge la página al dar al enter.
@@ -31,8 +33,8 @@ function App() {
   const renderSolutionLetters = () => {
     const wordLetters = word.split("");
     // setWord([...wordLetters]);
-    return wordLetters.map((word) => {
-      return <li className="letter"> {word}</li>;
+    return wordLetters.map((word, index) => {
+      return <li className="letter" key={index}> {word}</li>;
     });
   };
 
